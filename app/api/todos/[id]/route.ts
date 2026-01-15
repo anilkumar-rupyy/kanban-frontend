@@ -1,7 +1,7 @@
 import axios from "axios";
 import { NextRequest } from "next/server";
 
-
+const BACKEND_URL = process.env.BACKEND_URL || `http://localhost:4000/`;
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
     const accessToken = request.cookies.get('access_token')?.value || null;
 
@@ -15,7 +15,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     try {
         console.log('Deleting todo with id:', params);
         const { id } = await params;
-        const response = await axios.delete(`http://localhost:4000/todo/${id}`, {
+        const response = await axios.delete(`${BACKEND_URL}/todo/${id}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
@@ -50,14 +50,14 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     try {
         const { title, completed } = await request.json();
         const { id } = await params;
-        const response = await axios.put(`http://localhost:4000/todo/${id}`, { id, title }, {
+        const response = await axios.put(`${BACKEND_URL}/todo/${id}`, { id, title }, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
             }
         });
 
-        const updatedTodo = await axios.get(`http://localhost:4000/todo/${id}`, {
+        const updatedTodo = await axios.get(`${BACKEND_URL}/todo/${id}`, {
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
@@ -93,14 +93,14 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
     try {
         const { completed } = await request.json();
         const { id } = await params;
-        const response = await axios.patch(`http://localhost:4000/todo/${id}`, { id, completed }, {
+        const response = await axios.patch(`${BACKEND_URL}/todo/${id}`, { id, completed }, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
             }
         });
 
-        const patchedTodo = await axios.get(`http://localhost:4000/todo/${id}`, {
+        const patchedTodo = await axios.get(`${BACKEND_URL}/todo/${id}`, {
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
                 "Content-Type": "application/json",

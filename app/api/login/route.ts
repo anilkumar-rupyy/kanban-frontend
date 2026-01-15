@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
+
+const BACKEND_URL = process.env.BACKEND_URL || `http://localhost:4000/`;
 export async function POST(request: NextRequest) {
     const cookieStore = await cookies();
   try {
@@ -15,7 +17,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Forward request to external backend
-    const backendResponse = await fetch('http://localhost:4000/auth/login', {
+    const backendResponse = await fetch(`${BACKEND_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

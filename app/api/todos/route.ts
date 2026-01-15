@@ -1,6 +1,8 @@
 import axios from "axios";
 import { NextRequest } from "next/server";
 
+const BACKEND_URL = process.env.BACKEND_URL || `http://localhost:4000/`;
+
 export async function GET(request: NextRequest) {
 
     const accessToken = request.cookies.get('access_token')?.value || null;
@@ -13,7 +15,7 @@ export async function GET(request: NextRequest) {
     }
 
     try {
-        const response = await axios.get('http://localhost:4000/todo', {
+        const response = await axios.get(`${BACKEND_URL}/todo`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
@@ -48,7 +50,7 @@ export async function POST(request: NextRequest) {
         // get title from the request body
         const { title } = await request.json();
         console.log('Received title:', title);
-        const response = await axios.post('http://localhost:4000/todo', {title: title}, {
+        const response = await axios.post(`${BACKEND_URL}/todo`, {title: title}, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
