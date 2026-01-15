@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Forward request to external backend
-    const backendResponse = await fetch(`${BACKEND_URL}/auth/login`, {
+    const backendResponse = await fetch(`${BACKEND_URL}auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

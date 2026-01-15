@@ -15,7 +15,7 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     try {
         console.log('Deleting todo with id:', params);
         const { id } = await params;
-        const response = await axios.delete(`${BACKEND_URL}/todo/${id}`, {
+        const response = await axios.delete(`${BACKEND_URL}todo/${id}`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
@@ -50,14 +50,14 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     try {
         const { title, completed } = await request.json();
         const { id } = await params;
-        const response = await axios.put(`${BACKEND_URL}/todo/${id}`, { id, title }, {
+        const response = await axios.put(`${BACKEND_URL}todo/${id}`, { id, title }, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
             }
         });
 
-        const updatedTodo = await axios.get(`${BACKEND_URL}/todo/${id}`, {
+        const updatedTodo = await axios.get(`${BACKEND_URL}todo/${id}`, {
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
@@ -93,14 +93,14 @@ export async function PATCH(request: NextRequest, { params }: { params: Promise<
     try {
         const { completed } = await request.json();
         const { id } = await params;
-        const response = await axios.patch(`${BACKEND_URL}/todo/${id}`, { id, completed }, {
+        const response = await axios.patch(`${BACKEND_URL}todo/${id}`, { id, completed }, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
             }
         });
 
-        const patchedTodo = await axios.get(`${BACKEND_URL}/todo/${id}`, {
+        const patchedTodo = await axios.get(`${BACKEND_URL}todo/${id}`, {
             headers: {
                 "Authorization": `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
