@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextRequest } from "next/server";
 
 const BACKEND_URL = process.env.BACKEND_URL || `http://localhost:4000/`;
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const accessToken = request.cookies.get('access_token')?.value || null;
 
     if (!accessToken) {
@@ -37,7 +37,7 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
 
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const accessToken = request.cookies.get('access_token')?.value || null;
 
     if (!accessToken) {
@@ -80,7 +80,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
     const accessToken = request.cookies.get('access_token')?.value || null;
 
     if (!accessToken) {
