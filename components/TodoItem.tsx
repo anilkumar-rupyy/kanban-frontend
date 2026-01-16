@@ -43,23 +43,23 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onDelete, onEdit })
 
   if (isEditing) {
     return (
-      <li className="p-2 bg-gray-600 rounded mb-1">
-        <div className="flex items-center">
+      <li className="p-3 bg-gray-200 dark:bg-gray-800 rounded-lg">
+        <div className="flex items-center gap-2">
           <Input
             value={editText}
             onChange={(e) => setEditText(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="flex-1 mr-2"
+            className="flex-1 bg-white dark:bg-gray-700 text-gray-900 dark:text-white border-gray-300 dark:border-gray-600"
           />
           <button
             onClick={handleSave}
-            className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 mr-1"
+            className="px-3 py-1 bg-green-500 hover:bg-green-600 text-white rounded transition-colors"
           >
             Save
           </button>
           <button
             onClick={handleCancel}
-            className="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-400"
+            className="px-3 py-1 bg-gray-400 dark:bg-gray-600 hover:bg-gray-500 dark:hover:bg-gray-700 text-white rounded transition-colors"
           >
             Cancel
           </button>
@@ -69,24 +69,24 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onDelete, onEdit })
   }
 
   return (
-    <li className="p-2 bg-gray-600 rounded mb-1 hover:bg-gray-500">
+    <li className="p-3 bg-gray-200 dark:bg-gray-800 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
       <div className="flex justify-between items-center">
         <span
-          className={`cursor-pointer flex-1 ${todo.completed ? 'line-through' : ''}`}
+          className={`cursor-pointer flex-1 ${todo.completed ? 'line-through text-gray-500 dark:text-gray-400' : 'text-gray-900 dark:text-white'}`}
           onClick={() => onToggle(todo.id)}
         >
           {todo.title}
         </span>
-        <div className="ml-2">
+        <div className="ml-2 flex gap-1">
           <button
             onClick={handleEdit}
-            className="px-2 py-1 bg-gray-200 text-black rounded hover:bg-cyan-400 mr-1"
+            className="px-2 py-1 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm transition-colors"
           >
             Edit
           </button>
           <button
             onClick={() => onDelete(todo.id)}
-            className="px-2 py-1 bg-white text-black rounded hover:bg-red-400"
+            className="px-2 py-1 bg-red-500 hover:bg-red-600 text-white rounded text-sm transition-colors"
           >
             Delete
           </button>

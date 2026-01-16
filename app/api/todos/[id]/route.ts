@@ -13,7 +13,6 @@ export async function DELETE(request: NextRequest, { params }: { params: Promise
     }
 
     try {
-        console.log('Deleting todo with id:', params);
         const { id } = await params;
         const response = await axios.delete(`${BACKEND_URL}todo/${id}`, {
             headers: {

@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const loginSchema = z.object({
     email: z.string().email("Invalid email address"),
@@ -112,6 +113,11 @@ export default function LoginPage() {
                             </Button>
                         </form>
                     </Form>
+                    <div className="mt-4 text-center">
+                        <Link href="/signin" className="text-sm hover:underline">
+                            Don't have an account? Register
+                        </Link>
+                    </div>
                 </CardContent>
             </Card>
         </div>

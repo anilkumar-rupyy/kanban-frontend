@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const signInSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -148,6 +149,11 @@ export default function SignInPage() {
               </Button>
             </form>
           </Form>
+          <div className="w-full align-center content-center flex justify-center mt-4">
+            <Link href="/login" className="text-sm hover:underline">
+              Already have an account? Login
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>
